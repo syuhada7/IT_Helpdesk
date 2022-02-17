@@ -260,9 +260,15 @@ class Report extends CI_Controller
       } elseif ($depart . $user . $created . $updated && $lokasi == NULL && $status == NULL && $jenis == NULL) {
         $data['title']      = "Report List Job IT Helpdesk";
         $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
-        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Department " . " : " . $depart . " / " . " Type " . " : " . $jenis;
+        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Department " . " : " . $depart . " / " . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
         $data['datafilter'] = $this->Report_model->filter39($depart, $user, $created, $updated);
         $this->load->view('report/depart/report39', $data);
+      } elseif ($depart . $status . $jenis . $user . $created . $updated && $lokasi == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Department " . " : " . $depart . " / " . " Type " . " : " . $jenis . " / " . " Status " . " : " . $status . " / " . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
+        $data['datafilter'] = $this->Report_model->filter40($depart, $jenis, $user, $status, $created, $updated);
+        $this->load->view('report/depart/report40', $data);
       }
     }
   }

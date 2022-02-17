@@ -191,6 +191,12 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
+  function filter40($depart, $jenis, $user, $status, $created, $updated)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND jenis = '$jenis' AND username = '$user' AND status = '$status' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
   // Filter Grup Status
   function filter3($status)
   {
