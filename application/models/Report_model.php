@@ -106,6 +106,18 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
+  function filter34($lokasi, $created, $updated, $user)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND username = '$user' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter35($lokasi, $depart, $status, $jenis, $user, $created, $updated)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND depart = '$depart' AND status = '$status' AND jenis = '$jenis' AND username='$user' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
   // Filter Grup Department
   function filter2($depart)
   {
