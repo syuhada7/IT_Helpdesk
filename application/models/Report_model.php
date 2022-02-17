@@ -46,9 +46,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter13($lokasi, $status, $jenis)
+  function filter13($lokasi, $jenis, $status)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND status = '$status' AND jenis = '$jenis' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND jenis = '$jenis' AND status = '$status' ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -76,9 +76,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter17($lokasi, $depart, $status, $jenis, $created, $updated)
+  function filter17($lokasi, $depart, $jenis, $status, $created, $updated)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND depart = '$depart' AND status = '$status' AND jenis = '$jenis' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND depart = '$depart' AND jenis = '$jenis' AND status = '$status' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -94,9 +94,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter32($lokasi, $status, $user)
+  function filter32($lokasi, $user, $status)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND status = '$status' AND username = '$user' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND username = '$user' AND status = '$status' ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -112,9 +112,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter35($lokasi, $depart, $status, $jenis, $user, $created, $updated)
+  function filter35($lokasi, $depart, $jenis, $user, $status, $created, $updated)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND depart = '$depart' AND status = '$status' AND jenis = '$jenis' AND username='$user' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND depart = '$depart' AND jenis = '$jenis' AND username='$user' AND status = '$status' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -143,9 +143,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter21($depart, $status, $jenis)
+  function filter21($depart, $jenis, $status)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND status = '$status' AND jenis = '$jenis' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND jenis = '$jenis' AND status = '$status' ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -161,9 +161,33 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter24($depart, $status, $jenis, $created, $updated)
+  function filter24($depart, $jenis, $status, $created, $updated)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND status = '$status' AND jenis = '$jenis' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND jenis = '$jenis' AND status = '$status' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter36($depart, $user)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND username = '$user' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter37($depart, $user, $status)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND username = '$user' AND status = '$status' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter38($depart, $jenis, $user)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND jenis = '$jenis' AND username = '$user' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter39($depart, $user, $created, $updated)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE depart = '$depart' AND username = '$user' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -174,9 +198,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter25($status, $jenis)
+  function filter25($jenis, $status)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE status = '$status' AND jenis = '$jenis' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE jenis = '$jenis' AND status = '$status'ORDER BY id_help ASC");
     return $query->result();
   }
 
@@ -186,9 +210,9 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter27($status, $jenis, $created, $updated)
+  function filter27($jenis, $status, $created, $updated)
   {
-    $query = $this->db->query("SELECT * FROM helpdesk WHERE status = '$status' AND jenis = '$jenis' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE jenis = '$jenis' AND status = '$status' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
   }
 
