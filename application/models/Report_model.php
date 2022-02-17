@@ -106,7 +106,7 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
-  function filter34($lokasi, $created, $updated, $user)
+  function filter34($lokasi, $user, $created, $updated)
   {
     $query = $this->db->query("SELECT * FROM helpdesk WHERE lokasi = '$lokasi' AND username = '$user' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
