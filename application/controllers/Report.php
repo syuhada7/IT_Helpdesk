@@ -221,6 +221,12 @@ class Report extends CI_Controller
         $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Locations " . " : " . $lokasi . " / " . " Status " . " : " . $status;
         $data['datafilter'] = $this->Report_model->filter32($lokasi, $status, $user);
         $this->load->view('report/lokasi/report32', $data);
+      } elseif ($lokasi . $jenis . $user && $depart == NULL && $status == NULL && $created == NULL && $updated == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Locations " . " : " . $lokasi . " / " . " Type " . " : " . $jenis;
+        $data['datafilter'] = $this->Report_model->filter33($lokasi, $jenis, $user);
+        $this->load->view('report/lokasi/report33', $data);
       }
     }
   }
