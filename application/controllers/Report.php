@@ -269,6 +269,24 @@ class Report extends CI_Controller
         $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Department " . " : " . $depart . " / " . " Type " . " : " . $jenis . " / " . " Status " . " : " . $status . " / " . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
         $data['datafilter'] = $this->Report_model->filter40($depart, $jenis, $user, $status, $created, $updated);
         $this->load->view('report/depart/report40', $data);
+      } elseif ($status . $user && $lokasi == NULL && $depart == NULL && $jenis == NULL && $created == NULL && $updated == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Status " . " : " . $status;
+        $data['datafilter'] = $this->Report_model->filter41($user, $status);
+        $this->load->view('report/user/report41', $data);
+      } elseif ($status . $jenis . $user && $lokasi == NULL && $depart == NULL && $created == NULL && $updated == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Status " . " : " . $status . " / " . " Type " . " : " . $jenis;
+        $data['datafilter'] = $this->Report_model->filter42($jenis, $user, $status);
+        $this->load->view('report/type/report42', $data);
+      } elseif ($status . $created . $updated . $user && $lokasi == NULL && $depart == NULL && $jenis == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Solved By " . ' : ' . $user . " / " . " Status " . " : " . $status . " / " . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
+        $data['datafilter'] = $this->Report_model->filter43($user, $status, $created, $updated);
+        $this->load->view('report/user/report43', $data);
       }
     }
   }

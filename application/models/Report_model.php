@@ -235,6 +235,12 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
+  function filter42($jenis, $user, $status)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE jenis = '$jenis' AND username = '$user' AND status = '$status' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
   // Fiter Rentang waktu
   function filter5($created, $updated)
   {
@@ -246,6 +252,18 @@ class Report_model extends CI_Model
   function filter29($user)
   {
     $query = $this->db->query("SELECT * FROM helpdesk WHERE username = '$user' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter41($user, $status)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE username = '$user' AND status = '$status' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter43($user, $status, $created, $updated)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE username = '$user' AND status = '$status' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
   }
 }
