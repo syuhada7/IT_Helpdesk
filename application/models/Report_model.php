@@ -229,6 +229,12 @@ class Report_model extends CI_Model
     return $query->result();
   }
 
+  function filter45($jenis, $user)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE jenis = '$jenis' AND username = '$user' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
   function filter28($jenis, $created, $updated)
   {
     $query = $this->db->query("SELECT * FROM helpdesk WHERE jenis = '$jenis' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
@@ -258,6 +264,12 @@ class Report_model extends CI_Model
   function filter41($user, $status)
   {
     $query = $this->db->query("SELECT * FROM helpdesk WHERE username = '$user' AND status = '$status' ORDER BY id_help ASC");
+    return $query->result();
+  }
+
+  function filter44($user, $created, $updated)
+  {
+    $query = $this->db->query("SELECT * FROM helpdesk WHERE username = '$user' AND created BETWEEN '$created' AND '$updated' ORDER BY id_help ASC");
     return $query->result();
   }
 
