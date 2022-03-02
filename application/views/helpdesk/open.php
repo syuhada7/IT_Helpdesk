@@ -61,6 +61,10 @@
                 <label>Descriptions *</label>
                 <textarea name="deskrip2" class="form-control" cols="2" rows="2" required></textarea>
               </div>
+              <div class="col-lg-4">
+                <label>Update Date *</label>
+                <input name="updated" class="form-control" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('d-m-Y H:i:s') ?>" readonly>
+              </div>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button>

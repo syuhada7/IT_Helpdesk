@@ -78,7 +78,7 @@ class Helpdesk_model extends CI_Model
       'deskrip2'    => $post['deskrip2'],
       'status'      => 'Close',
       'username'    => $post['username'],
-      'updated'     => date("Y-m-d H:i:s")
+      'updated'     => $post['updated']
     ];
     $this->db->where('id_help', $post['id_help']);
     $this->db->update('helpdesk', $params);
@@ -96,7 +96,7 @@ class Helpdesk_model extends CI_Model
       'deskrip2'    => $post['deskrip2'],
       'status'      => 'OPEN',
       'username'    => $post['username'],
-      'updated'     => date("Y-m-d H:i:s")
+      'updated'     => $post['updated']
     ];
     $this->db->where('id_help', $post['id_help']);
     $this->db->update('helpdesk', $params);
