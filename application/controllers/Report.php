@@ -284,14 +284,44 @@ class Report extends CI_Controller
         $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
         $data['judul']      = " Locations " . " : " . $lokasi . " / " . " Department " . " : " . $depart  . " / " . " Type " . " : " . $jenis . " / " . " Solved By " . " : " . $user;
         $data['datafilter'] = $this->Report_model->filter47($lokasi, $depart, $jenis, $user);
-        $this->load->view('report/lokasi/report47', $data);
+        $this->load->view('report/lokasi/report47', $data); //1
+      } elseif ($depart . $jenis . $user . $status && $lokasi = NULL && $created == NULL && $updated == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Department " . " : " . $depart  . " / " . " Type " . " : " . $jenis . " / " . " Solved By " . " : " . $user . " / " . " Status " . $status;
+        $data['datafilter'] = $this->Report_model->filter48($depart, $jenis, $user, $status);
+        $this->load->view('report/depart/report48', $data); //2
+      } elseif ($lokasi . $jenis . $user . $status && $depart == NULL && $created == NULL && $updated == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Locations " . " : " . $lokasi . " / " . " Type " . " : " . $jenis . " / " . " Solved By " . " : " . $user . " / " . " Status " . $status;
+        $data['datafilter'] = $this->Report_model->filter49($lokasi, $jenis, $user, $status);
+        $this->load->view('report/lokasi/report49', $data); //3
+      } elseif ($lokasi . $depart . $user . $status && $jenis == NULL && $created == NULL && $updated == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Locations " . " : " . $lokasi . " / " . " Department " . " : " . $depart  . " / " . " Solved By " . " : " . $user . " / " . " Status " . " : " . $status;
+        $data['datafilter'] = $this->Report_model->filter50($lokasi, $depart, $user, $status);
+        $this->load->view('report/lokasi/report50', $data); //4
       } elseif ($lokasi . $depart . $jenis . $status && $user == NULL && $created == NULL && $updated == NULL) {
         $data['title']      = "Report List Job IT Helpdesk";
         $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
-        $data['judul']      = " Locations " . " : " . $lokasi . " / " . " Department " . " : " . $depart  . " / " . " Status " . " : " . $status . " / " . " Type " . " : " . $jenis;
+        $data['judul']      = " Locations " . " : " . $lokasi . " / " . " Department " . " : " . $depart  . " / " . " Type " . " : " . $jenis . " / " . " Status " . " : " . $status;
         $data['datafilter'] = $this->Report_model->filter16($lokasi, $depart, $jenis, $status);
-        $this->load->view('report/lokasi/report16', $data);
-      } elseif ($depart . $status . $jenis . $created . $updated && $lokasi == NULL && $user == NULL) {
+        $this->load->view('report/lokasi/report16', $data); //5
+      } elseif ($lokasi . $depart . $jenis . $created . $updated && $user == NULL && $status == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Locations " . " : " . $lokasi  . " / " . " Department " . " : " . $depart  . " / " . " Type " . " : " . $jenis . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
+        $data['datafilter'] = $this->Report_model->filter51($lokasi, $depart, $jenis, $created, $updated);
+        $this->load->view('report/lokasi/report51', $data); //6
+      } elseif ($depart . $jenis . $user . $created . $updated && $lokasi == NULL && $status == NULL) {
+        $data['title']      = "Report List Job IT Helpdesk";
+        $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
+        $data['judul']      = " Department " . " : " . $depart  . " / " . " Type " . " : " . $jenis . " / " . " Solved By " . " : " . $user . " / " . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
+        $data['datafilter'] = $this->Report_model->filter52($depart, $jenis, $user, $created, $updated);
+        $this->load->view('report/depart/report52', $data); //7
+      } elseif ($depart . $jenis . $status . $created . $updated && $lokasi == NULL && $user == NULL) {
         $data['title']      = "Report List Job IT Helpdesk";
         $data['subtitle']   = " PT. PAHALA BAHARI NUSANTARA ";
         $data['judul']      = " Department " . " : " . $depart  . " / " . " Status " . " : " . $status . " / " . " Type " . " : " . $jenis . " / " . " Date " . " : " . $created . " / " . " Until Date " . " : " . $updated;
