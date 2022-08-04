@@ -13,7 +13,7 @@
       <i class="fa fa-edit"></i>
       <h3 class="box-title"><?= ucfirst($page) ?> Helpdesk Form</h3>
       <div class="pull-right">
-        <a href="<?= site_url('Helpdesk'); ?>" class="btn btn-warning">
+        <a href="<?= site_url('Helpdesk/team'); ?>" class="btn btn-warning">
           <i class="fa fa-arrow-left"></i> Back
         </a>
       </div>
@@ -53,17 +53,21 @@
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <label>Created</label>
                 <input type="text" name="created" class="form-control" value="<?= $row->created ?>" readonly>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-3">
+                <label>Progress Date</label>
+                <input type="text" name="updated" class="form-control" value="<?= $row->updated ?>" readonly>
+              </div>
+              <div class="col-lg-3">
+                <label>Date</label>
+                <input name="opened" class="form-control" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('Y-m-d H:i:s') ?>" readonly>
+              </div>
+              <div class="col-lg-3">
                 <label>Descriptions *</label>
                 <textarea name="deskrip2" class="form-control" cols="2" rows="2" required></textarea>
-              </div>
-              <div class="col-lg-4">
-                <label>Update Date *</label>
-                <input name="updated" class="form-control" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('d-m-Y H:i:s') ?>" readonly>
               </div>
             </div>
             <div class="form-group">

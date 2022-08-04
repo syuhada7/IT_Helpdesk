@@ -13,7 +13,7 @@
       <i class="fa fa-edit"></i>
       <h3 class="box-title"><?= ucfirst($page) ?> Helpdesk Form</h3>
       <div class="pull-right">
-        <a href="<?= site_url('Helpdesk'); ?>" class="btn btn-warning">
+        <a href="<?= site_url('Helpdesk/team'); ?>" class="btn btn-warning">
           <i class="fa fa-arrow-left"></i> Back
         </a>
       </div>

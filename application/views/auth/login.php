@@ -5,7 +5,7 @@
       <h3 align="center"><img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" width="150px"> <br> IT Helpdesk</h3>
       <form action="<?= site_url('Auth/login') ?>" method="post">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" name="username" placeholder="Username" required>
+          <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">

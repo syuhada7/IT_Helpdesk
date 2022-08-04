@@ -149,7 +149,7 @@
                 </a>
               </li>
               <li <?= $this->uri->segment(1) == 'Helpdesk' ? 'class="active"' : '' ?>>
-                <a href="<?= base_url('Helpdesk') ?>">
+                <a href="<?= base_url('Helpdesk/team') ?>">
                   <i class="fa fa-child"></i> <span>Helpdesk</span>
                 </a>
               </li>
@@ -231,48 +231,6 @@
       $('#example1').DataTable()
       $('#example2').DataTable()
     })
-  </script>
-  <script>
-    //Penampilan filter report logistic
-    document.getElementById('form1').style.display = "none";
-    document.getElementById('form2').style.display = "none";
-    document.getElementById('form3').style.display = "none";
-    document.getElementById('form4').style.display = "none";
-    document.getElementById('form5').style.display = "none";
-
-    function getval(sel) {
-      if (sel.value == 1) {
-        document.getElementById('form1').style.display = "block";
-        document.getElementById('form2').style.display = "none";
-        document.getElementById('form3').style.display = "none";
-        document.getElementById('form4').style.display = "none";
-        document.getElementById('form5').style.display = "none";
-      } else if (sel.value == 2) {
-        document.getElementById('form1').style.display = "none";
-        document.getElementById('form2').style.display = "block";
-        document.getElementById('form3').style.display = "none";
-        document.getElementById('form4').style.display = "none";
-        document.getElementById('form5').style.display = "none";
-      } else if (sel.value == 3) {
-        document.getElementById('form1').style.display = "none";
-        document.getElementById('form2').style.display = "none";
-        document.getElementById('form3').style.display = "block";
-        document.getElementById('form4').style.display = "none";
-        document.getElementById('form5').style.display = "none";
-      } else if (sel.value == 4) {
-        document.getElementById('form1').style.display = "none";
-        document.getElementById('form2').style.display = "none";
-        document.getElementById('form3').style.display = "none";
-        document.getElementById('form4').style.display = "block";
-        document.getElementById('form5').style.display = "none";
-      } else if (sel.value == 5) {
-        document.getElementById('form1').style.display = "none";
-        document.getElementById('form2').style.display = "none";
-        document.getElementById('form3').style.display = "none";
-        document.getElementById('form4').style.display = "none";
-        document.getElementById('form5').style.display = "block";
-      }
-    }
   </script>
 </body>
 

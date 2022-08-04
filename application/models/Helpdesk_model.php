@@ -60,13 +60,13 @@ class Helpdesk_model extends CI_Model
       'depart'      => $post['depart'],
       'jenis'       => $post['request'],
       'deskrip1'    => $post['deskrip1'],
-      'status'      => 'IN PROGRESS',
+      'status'      => 'OPEN',
       'username'    => $post['username']
     ];
     $this->db->insert('helpdesk', $params);
   }
 
-  public function edit($post)
+  public function kerja($post)
   {
     $params = [
       'no_tiket'    => $post['no_tiket'],
@@ -75,8 +75,8 @@ class Helpdesk_model extends CI_Model
       'depart'      => $post['depart'],
       'jenis'       => $post['request'],
       'deskrip1'    => $post['deskrip1'],
-      'deskrip2'    => $post['deskrip2'],
-      'status'      => 'Close',
+      'created'     => $post['created'],
+      'status'      => 'IN PROGRESS',
       'username'    => $post['username'],
       'updated'     => $post['updated']
     ];
@@ -94,9 +94,29 @@ class Helpdesk_model extends CI_Model
       'jenis'       => $post['request'],
       'deskrip1'    => $post['deskrip1'],
       'deskrip2'    => $post['deskrip2'],
-      'status'      => 'OPEN',
+      'status'      => 'PENDING',
       'username'    => $post['username'],
-      'updated'     => $post['updated']
+      'updated'     => $post['updated'],
+      'opened'      => $post['opened']
+    ];
+    $this->db->where('id_help', $post['id_help']);
+    $this->db->update('helpdesk', $params);
+  }
+
+  public function edit($post)
+  {
+    $params = [
+      'no_tiket'    => $post['no_tiket'],
+      'nama_user'   => $post['nama_user'],
+      'lokasi'      => $post['lokasi'],
+      'depart'      => $post['depart'],
+      'jenis'       => $post['request'],
+      'deskrip1'    => $post['deskrip1'],
+      'deskrip2'    => $post['deskrip2'],
+      'status'      => 'Close',
+      'username'    => $post['username'],
+      'updated'     => $post['updated'],
+      'closed'      => $post['closed']
     ];
     $this->db->where('id_help', $post['id_help']);
     $this->db->update('helpdesk', $params);
