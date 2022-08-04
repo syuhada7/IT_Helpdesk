@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-lg">
           <form action="<?= base_url('helpdesk/process') ?>" method="POST">
-            <div class="form-group row">
+            <div class="form-group">
               <div class="col-lg-4">
                 <label>No Ticket</label>
                 <input type="hidden" name="id_help" value="<?= $row->id_help ?>" class="form-control">
@@ -30,15 +30,15 @@
                 <input type="text" name="no_tiket" value="<?= $row->no_tiket ?>" class="form-control" readonly>
               </div>
               <div class="col-lg-4">
-                <label>Locations</label>
-                <input type="text" name="lokasi" class="form-control" value="<?= $row->lokasi ?>" readonly>
-              </div>
-              <div class="col-lg-4">
                 <label>User</label>
                 <input type="text" name="nama_user" value="<?= $row->nama_user ?>" class="form-control" readonly>
               </div>
+              <div class="col-lg-4">
+                <label>Locations</label>
+                <input type="text" name="lokasi" class="form-control" value="<?= $row->lokasi ?>" readonly>
+              </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group">
               <div class="col-lg-4">
                 <label>Departement</label>
                 <input type="text" name="depart" class="form-control" value="<?= $row->depart ?>" readonly>
@@ -52,7 +52,7 @@
                 <textarea name="deskrip1" class="form-control" cols="2" rows="1" readonly><?= $row->deskrip1 ?></textarea>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group">
               <div class="col-lg-3">
                 <label>Created</label>
                 <input type="text" name="created" class="form-control" value="<?= $row->created ?>" readonly>
@@ -62,7 +62,7 @@
                 <input type="text" name="updated" class="form-control" value="<?= $row->updated ?>" readonly>
               </div>
               <div class="col-lg-3">
-                <label>Date</label>
+                <label>Pending Date</label>
                 <input name="opened" class="form-control" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('Y-m-d H:i:s') ?>" readonly>
               </div>
               <div class="col-lg-3">
@@ -71,7 +71,9 @@
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button>
+              <div class="col-lg-3">
+                <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button>
+              </div>
             </div>
           </form>
         </div>

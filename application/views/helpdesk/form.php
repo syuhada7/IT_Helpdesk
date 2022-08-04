@@ -26,32 +26,21 @@
               <div class="col-lg-4">
                 <label>No Ticket</label>
                 <input type="hidden" name="id_help" value="<?= $row->id_help ?>" class="form-control">
-                <input type="hidden" name="username" value="<?= $this->fungsi->user_login()->username; ?>" class="form-control">
                 <input type="text" name="no_tiket" value="<?= $tiket ?>" class="form-control" readonly>
               </div>
               <div class="col-lg-4">
-                <label>Locations *</label>
-                <select name="lokasi" class="form-control">
-                  <option>--</option>
-                  <?php foreach ($lokasi as $lok) : ?>
-                    <option value="<?= $lok->lokasi ?>"><?= $lok->lokasi ?></option>
-                  <?php endforeach; ?>
-                </select>
+                <label>User</label>
+                <input type="text" name="nama_user" value="<?= $this->fungsi->user_login()->username; ?>" class="form-control" readonly>
               </div>
               <div class="col-lg-4">
-                <label>User *</label>
-                <input type="text" name="nama_user" class="form-control" required>
+                <label>Departement</label>
+                <input type="text" name="depart" value="<?= $this->fungsi->user_login()->divisi; ?>" class="form-control" readonly>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-4">
-                <label>Departement</label>
-                <select name="depart" class="form-control">
-                  <option>--</option>
-                  <?php foreach ($depart as $dep) : ?>
-                    <option value="<?= $dep->nama_depart ?>"><?= $dep->nama_depart ?></option>
-                  <?php endforeach; ?>
-                </select>
+                <label>Locations *</label>
+                <input type="text" name="lokasi" value="<?= $this->fungsi->user_login()->lokasi; ?>" class="form-control" readonly>
               </div>
               <div class="col-lg-4">
                 <label>Type *</label>
@@ -67,7 +56,7 @@
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button>
+              <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button> |
               <button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Reset</button>
             </div>
           </form>

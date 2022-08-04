@@ -59,8 +59,9 @@ class Auth extends CI_Controller
     $this->form_validation->set_rules('divisi', 'Divisi', 'trim');
 
     if ($this->form_validation->run() == false) {
+      $data['depart'] = $this->db->get('departemen')->result();
       $this->load->view('templates/auth_header');
-      $this->load->view('Auth/register');
+      $this->load->view('Auth/register', $data);
       $this->load->view('templates/auth_footer');
     } else {
       $post = $this->input->post(null, TRUE);

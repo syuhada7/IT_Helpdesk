@@ -61,7 +61,6 @@ class Helpdesk_model extends CI_Model
       'jenis'       => $post['request'],
       'deskrip1'    => $post['deskrip1'],
       'status'      => 'OPEN',
-      'username'    => $post['username']
     ];
     $this->db->insert('helpdesk', $params);
   }
@@ -113,8 +112,10 @@ class Helpdesk_model extends CI_Model
       'jenis'       => $post['request'],
       'deskrip1'    => $post['deskrip1'],
       'deskrip2'    => $post['deskrip2'],
+      'deskrip3'    => $post['deskrip3'],
       'status'      => 'Close',
       'username'    => $post['username'],
+      'created'     => $post['created'],
       'updated'     => $post['updated'],
       'closed'      => $post['closed']
     ];

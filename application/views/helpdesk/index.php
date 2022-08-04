@@ -32,16 +32,14 @@
           <?php $no = 1;
           foreach ($row->result() as $key => $data) : ?>
             <tr>
-              <td><?= $data->no_tiket?></td>
+              <td><?= $data->no_tiket ?></td>
               <td><?= $data->nama_user ?></td>
               <td><?= $data->depart ?></td>
               <td><?= $data->deskrip1 ?></td>
               <td><?= $data->created ?></td>
               <td><?= $data->status ?></td>
               <td class="text-center" width="160">
-                <?= anchor('helpdesk/view/' . $data->id_help, '<button class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></button>'); ?> |
-                <a href="<?= base_url('helpdesk/belum/' . $data->id_help); ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Open"><i class="fa fa-book"></i></a> |
-                <a href="<?= base_url('helpdesk/edit/' . $data->id_help); ?>" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="Update"><i class="fa fa-pencil"></i></a>
+                <?= anchor('helpdesk/view/' . $data->id_help, '<button class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i> View</button>'); ?>
               </td>
             </tr>
           <?php endforeach; ?>

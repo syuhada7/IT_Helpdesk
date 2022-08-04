@@ -16,12 +16,16 @@
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" name="password2" placeholder="Retype password" required>
-          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          <input type="password" class="form-control" name="password2" placeholder="Re-password" required>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" name="divisi" placeholder="Divisi" required>
-          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          <select name="divisi" class="form-control" required>
+            <option>Department</option>
+            <?php foreach ($depart as $dep) : ?>
+              <option value="<?= $dep->nama_depart ?>"><?= $dep->nama_depart ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
         <div class="row">
           <div class="col-xs-7">

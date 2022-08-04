@@ -33,12 +33,8 @@ class Helpdesk extends CI_Controller
     $helpdesk->jenis = null;
     $helpdesk->deskrip1 = null;
 
-    $lokasi = $this->db->get('lokasi')->result();
-    $depart = $this->db->get('departemen')->result();
     $data = array(
       'page'  => 'add',
-      'lokasi' => $lokasi,
-      'depart' => $depart,
       'row'   => $helpdesk
     );
     $data['tiket'] = $this->Helpdesk_model->tiket();
@@ -76,7 +72,12 @@ class Helpdesk extends CI_Controller
     $post = $this->input->post(null, TRUE);
     if (isset($_POST['kerja'])) {
       $this->Helpdesk_model->kerja($post);
+      //kirim status ke telegram
+      $this->telegram_progress($post);
+      //kirim status ke e-mail
+      //$this->send_email($post);
     }
+
     if ($this->db->affected_rows() > 0) {
       $this->session->set_flashdata('success', 'Data Success Save');
     }
@@ -89,27 +90,36 @@ class Helpdesk extends CI_Controller
     if (isset($_POST['add'])) {
       $this->Helpdesk_model->add($post);
       //kirim status ke telegram
-      $this->send_telegram($post);
+      $this->telegram_add($post);
       //kirim status ke e-mail
       //$this->send_email($post);
+
+      if ($this->db->affected_rows() > 0) {
+        $this->session->set_flashdata('success', 'Data Success Save');
+      }
+      redirect('Helpdesk');
     } else if (isset($_POST['update'])) {
       $this->Helpdesk_model->edit($post);
+      //kirim status ke telegram
+      $this->telegram_close($post);
+      //kirim status ke e-mail
+      //$this->send_email($post);
+
       if ($this->db->affected_rows() > 0) {
         $this->session->set_flashdata('success', 'Data Success Save');
       }
       redirect('Helpdesk/team');
     } else if (isset($_POST['open'])) {
       $this->Helpdesk_model->belum($post);
+      //kirim status ke telegram
+      $this->telegram_open($post);
+      //kirim status ke e-mail
+      //$this->send_email($post);
       if ($this->db->affected_rows() > 0) {
         $this->session->set_flashdata('success', 'Data Success Save');
       }
       redirect('Helpdesk/team');
     }
-
-    if ($this->db->affected_rows() > 0) {
-      $this->session->set_flashdata('success', 'Data Success Save');
-    }
-    redirect('Helpdesk');
   }
 
   public function view($id)
@@ -134,27 +144,131 @@ class Helpdesk extends CI_Controller
     redirect('Helpdesk');
   }
 
-  public function send_telegram($post){
+  public function telegram_add($post)
+  {
     $key_bot = '5585485836:AAEHd3wA0-RmI3es3BTzLI6gxMTBJjFa6w8';
     $no_tiket = $post['no_tiket'];
     $pelapor = $post['nama_user'];
+    $divisi = $post['depart'];
+    $lokasi = $post['lokasi'];
+    $jenis = $post['request'];
     $desc = $post['deskrip1'];
+    $status = "OPEN";
 
-    $msg =  "[" . date('D, j M Y H:i:s') . "] ".PHP_EOL."Hallo Tim IT Helpdesk, berikut rincian trouble ticket :".PHP_EOL."No. Tiket: ".$no_tiket.PHP_EOL."Pelapor: ".$pelapor.PHP_EOL."Deskripsi: ".$desc;
+    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT Helpdesk, berikut rincian trouble ticket dari user :" . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Status : " . $status . PHP_EOL . "Mohon segera di follow up yah.";
 
     try {
-        $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
-        $url = $url . "&text=" . urlencode($msg);
-        $ch = curl_init();
-        $optArray = array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-        );
-        curl_setopt_array($ch, $optArray);
-        curl_exec($ch);
-        echo "<script>alert(ok);</script>";
+      $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
+      $url = $url . "&text=" . urlencode($msg);
+      $ch = curl_init();
+      $optArray = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+      );
+      curl_setopt_array($ch, $optArray);
+      curl_exec($ch);
+      echo "<script>alert(ok);</script>";
     } catch (Exception $ex) {
-        echo "<script>alert(error);</script>";
+      echo "<script>alert(error);</script>";
+    }
+  }
+
+  public function telegram_progress($post)
+  {
+    $key_bot = '5585485836:AAEHd3wA0-RmI3es3BTzLI6gxMTBJjFa6w8';
+    $no_tiket = $post['no_tiket'];
+    $pelapor = $post['nama_user'];
+    $divisi = $post['depart'];
+    $lokasi = $post['lokasi'];
+    $waktu = $post['created'];
+    $jenis = $post['request'];
+    $desc = $post['deskrip1'];
+    $teknisi = $post['username'];
+    $status = "IN PROGRESS";
+
+    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Status : " . $status . PHP_EOL . "Terimakasih.";
+
+    try {
+      $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
+      $url = $url . "&text=" . urlencode($msg);
+      $ch = curl_init();
+      $optArray = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+      );
+      curl_setopt_array($ch, $optArray);
+      curl_exec($ch);
+      echo "<script>alert(ok);</script>";
+    } catch (Exception $ex) {
+      echo "<script>alert(error);</script>";
+    }
+  }
+
+  public function telegram_open($post)
+  {
+    $key_bot = '5585485836:AAEHd3wA0-RmI3es3BTzLI6gxMTBJjFa6w8';
+    $no_tiket = $post['no_tiket'];
+    $pelapor = $post['nama_user'];
+    $divisi = $post['depart'];
+    $lokasi = $post['lokasi'];
+    $jenis = $post['request'];
+    $waktu1 = $post['created'];
+    $waktu2 = $post['updated'];
+    $desc = $post['deskrip1'];
+    $desc2 = $post['deskrip2'];
+    $teknisi = $post['username'];
+    $status = "PENDING";
+
+    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System akan menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu1 . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Waktu Pengerjaan : " . $waktu2 . PHP_EOL . "Status : " . $status . PHP_EOL . "Terpending Di Karenakan : " . $desc2 . PHP_EOL . "Terimakasih.";
+
+    try {
+      $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
+      $url = $url . "&text=" . urlencode($msg);
+      $ch = curl_init();
+      $optArray = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+      );
+      curl_setopt_array($ch, $optArray);
+      curl_exec($ch);
+      echo "<script>alert(ok);</script>";
+    } catch (Exception $ex) {
+      echo "<script>alert(error);</script>";
+    }
+  }
+
+  public function telegram_close($post)
+  {
+    $key_bot = '5585485836:AAEHd3wA0-RmI3es3BTzLI6gxMTBJjFa6w8';
+    $no_tiket = $post['no_tiket'];
+    $pelapor = $post['nama_user'];
+    $divisi = $post['depart'];
+    $lokasi = $post['lokasi'];
+    $jenis = $post['request'];
+    $waktu1 = $post['created'];
+    $waktu2 = $post['updated'];
+    $waktu3 = $post['opened'];
+    $desc = $post['deskrip1'];
+    $desc2 = $post['deskrip2'];
+    $desc3 = $post['deskrip3'];
+    $teknisi = $post['username'];
+    $status = "Close";
+
+    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System ingin Menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu1 . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Waktu Pengerjaan : " . $waktu2 . PHP_EOL . "Terpending Di Karenakan : " . $desc2 . PHP_EOL . "Pada tanggal : " . $waktu3 . PHP_EOL . "Status : " . $status . PHP_EOL . "Dengan rincian yang dikerjakan : " . $desc3 . PHP_EOL . "Terimakasih.";
+
+    try {
+      $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
+      $url = $url . "&text=" . urlencode($msg);
+      $ch = curl_init();
+      $optArray = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+      );
+      curl_setopt_array($ch, $optArray);
+      curl_exec($ch);
+      echo "<script>alert(ok);</script>";
+    } catch (Exception $ex) {
+      echo "<script>alert(error);</script>";
     }
   }
 }

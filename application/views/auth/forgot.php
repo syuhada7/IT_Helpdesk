@@ -8,11 +8,15 @@
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
+          <input type="password" class="form-control" name="password" placeholder="Old Password" required>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
           <input type="password" class="form-control" name="password1" placeholder="New Password" required>
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" name="password2" placeholder="Retype password" required>
+          <input type="password" class="form-control" name="password2" placeholder="Re-password" required>
           <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
         </div>
         <div class="row">

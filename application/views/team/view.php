@@ -72,29 +72,6 @@
           <td><?= $data->closed ?></td>
         </tr>
     </table>
-    <form action="<?= base_url('helpdesk/kerja');?>" method="POST">
-      <div class="form-group row">
-        <input type="hidden" name="id_help" value="<?= $data->id_help ?>">
-        <input type="hidden" name="no_tiket" value="<?= $data->no_tiket ?>">
-        <input type="hidden" name="nama_user" value="<?= $data->nama_user ?>">
-        <input type="hidden" name="depart" value="<?= $data->depart ?>">
-        <input type="hidden" name="lokasi" value="<?= $data->lokasi ?>">
-        <input type="hidden" name="request" value="<?= $data->jenis ?>">
-        <input type="hidden" name="deskrip1" value="<?= $data->deskrip1 ?>">
-        <input type="hidden" name="status" value="<?= $data->status ?>">
-        <input type="hidden" name="created" value="<?= $data->created ?>">
-        <input type="hidden" name="updated" class="form-control" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('Y-m-d H:i:s') ?>">
-        <input type="hidden" name="username" value="<?= $this->fungsi->user_login()->username; ?>" class="form-control">
-      </div>
-      <div class="form-group">
-        <?php $status = $data->status;
-        if ($status == "IN PROGRESS") {
-          echo "<button type='button' class='btn btn-warning' name='kerja' data-toggle='tooltip' data-placement='top' title='In Progress' disabled><i class='fa fa-car'></i></button>";
-        } else if($status == "OPEN"){
-          echo "<button type='submit' class='btn btn-warning' name='kerja' data-toggle='tooltip' data-placement='top' title='In Progress'><i class='fa fa-car'></i></button>";
-        }?>
-      </div>
-    </form>
   <?php endforeach; ?>
   </div>
 </section>

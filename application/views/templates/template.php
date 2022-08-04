@@ -70,7 +70,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Profile</a>
+                    <a href="<?= site_url('Users') ?>" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Profile</a>
                   </div>
                   <div class="pull-right">
                     <a href="<?= site_url('Auth/logout') ?>" class="btn btn-flat bg-red"><i class="fa fa-caret-square-o-right"></i> Sign out</a>
