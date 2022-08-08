@@ -34,13 +34,38 @@ class Auth extends CI_Controller
         $row = $query->row();
         $params = array(
           'id_user' => $row->id_user,
-          'level' => $row->level
+          'level'   => $row->level,
+          'actived' => $row->actived
         );
         $this->session->set_userdata($params);
-        echo "<script>
+        if ($row->actived == 1) {
+          if ($row->level == 1) {
+            echo "<script>
+          alert('Hore, Login Success');
+          window.location='" . site_url('Dashboard') . "';
+          </script>";
+          } elseif ($row->level == 2) {
+            echo "<script>
+          alert('Hore, Login Success');
+          window.location='" . site_url('Dashboard/team') . "';
+          </script>";
+          } elseif ($row->level == 3) {
+            echo "<script>
         alert('Hore, Login Success');
         window.location='" . site_url('Dashboard') . "';
         </script>";
+          } elseif ($row->level == 4) {
+            echo "<script>
+        alert('Hore, Login Success');
+        window.location='" . site_url('Dashboard/users') . "';
+        </script>";
+          }
+        } else {
+          echo "<script>
+          alert('Sorry, Your account not actived');
+          window.location='" . site_url('Auth') . "';
+          </script>";
+        }
       } else {
         echo "<script>
         alert('Sorry, Please check your username / password');
@@ -57,9 +82,11 @@ class Auth extends CI_Controller
     $this->form_validation->set_rules('password1', 'Password', 'trim|min_length[6]|matches[password2]', ['matches' => 'password dont match!!', 'min_length' => 'Password too short!']);
     $this->form_validation->set_rules('password2', 'Password', 'trim|matches[password1]');
     $this->form_validation->set_rules('divisi', 'Divisi', 'trim');
+    $this->form_validation->set_rules('lokasi', 'Locations', 'trim');
 
     if ($this->form_validation->run() == false) {
       $data['depart'] = $this->db->get('departemen')->result();
+      $data['lokasi'] = $this->db->get('lokasi')->result();
       $this->load->view('templates/auth_header');
       $this->load->view('Auth/register', $data);
       $this->load->view('templates/auth_footer');

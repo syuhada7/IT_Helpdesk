@@ -39,7 +39,7 @@
 
     <header class="main-header">
       <!-- Logo -->
-      <a href="<?= base_url('Dashboard') ?>" class="logo">
+      <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>PBN</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -87,34 +87,32 @@
     <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <a href="<?= base_url('dashboard'); ?>">
-              <span>
-                <h5><i class="fa fa-circle text-success"></i> <?= $this->fungsi->user_login()->username; ?></h5>
-              </span>
-            </a>
-          </div>
-        </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search...">
-            <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-          </div>
-        </form>
-        <!-- /.search form -->
-
         <!-- Administrator -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <?php if ($this->session->userdata('level') == 1) { ?>
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <a href="<?= base_url('dashboard'); ?>">
+                <span>
+                  <h5><i class="fa fa-circle text-success"></i> <?= $this->fungsi->user_login()->username; ?></h5>
+                </span>
+              </a>
+            </div>
+          </div>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
@@ -141,10 +139,34 @@
 
           <!-- User -->
           <?php if ($this->session->userdata('level') == 2) { ?>
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+              <div class="pull-left image">
+                <img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" alt="User Image">
+              </div>
+              <div class="pull-left info">
+                <a href="<?= base_url('dashboard/team'); ?>">
+                  <span>
+                    <h5><i class="fa fa-circle text-success"></i> <?= $this->fungsi->user_login()->username; ?></h5>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </form>
+            <!-- /.search form -->
             <ul class="sidebar-menu" data-widget="tree">
               <li class="header">MAIN NAVIGATION</li>
               <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
-                <a href="<?= base_url('dashboard'); ?>">
+                <a href="<?= base_url('dashboard/team'); ?>">
                   <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
               </li>
@@ -162,15 +184,39 @@
 
             <!-- Pimpinan -->
             <?php if ($this->session->userdata('level') == 3) { ?>
+              <!-- Sidebar user panel -->
+              <div class="user-panel">
+                <div class="pull-left image">
+                  <img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                  <a href="<?= base_url('dashboard/team'); ?>">
+                    <span>
+                      <h5><i class="fa fa-circle text-success"></i> <?= $this->fungsi->user_login()->username; ?></h5>
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <!-- search form -->
+              <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control" placeholder="Search...">
+                  <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+              </form>
+              <!-- /.search form -->
               <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
-                  <a href="<?= base_url('dashboard'); ?>">
+                  <a href="<?= base_url('dashboard/team'); ?>">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                   </a>
                 </li>
                 <li <?= $this->uri->segment(1) == 'Helpdesk' ? 'class="active"' : '' ?>>
-                  <a href="<?= base_url('Helpdesk') ?>">
+                  <a href="<?= base_url('Helpdesk/team') ?>">
                     <i class="fa fa-child"></i> <span>Helpdesk</span>
                   </a>
                 </li>
@@ -181,9 +227,30 @@
                 </li>
               <?php } ?>
 
-              <li class="header">USER</li>
-              <li><a href="<?= site_url('Auth/logout') ?>"><i class="fa  fa-caret-square-o-right text-red"></i> <span>Logout</span></a></li>
-              </ul>
+              <!-- Users -->
+              <?php if ($this->session->userdata('level') == 4) { ?>
+                <ul class="sidebar-menu" data-widget="tree">
+                  <li class="header">MAIN NAVIGATION</li>
+                  <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
+                    <a href="<?= base_url('dashboard/users'); ?>">
+                      <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                  </li>
+                  <li <?= $this->uri->segment(1) == 'Helpdesk' ? 'class="active"' : '' ?>>
+                    <a href="<?= base_url('Helpdesk/users') ?>">
+                      <i class="fa fa-child"></i> <span>Helpdesk</span>
+                    </a>
+                  </li>
+                  <li <?= $this->uri->segment(1) == 'Report' ? 'class="active"' : '' ?>>
+                    <a href="<?= base_url('report') ?>">
+                      <i class="fa fa-book"></i> <span>Report</span>
+                    </a>
+                  </li>
+                <?php } ?>
+
+                <li class="header">USER</li>
+                <li><a href="<?= site_url('Auth/logout') ?>"><i class="fa  fa-caret-square-o-right text-red"></i> <span>Logout</span></a></li>
+                </ul>
       </section>
       <!-- /.sidebar -->
     </aside>

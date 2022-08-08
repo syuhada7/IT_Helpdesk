@@ -27,10 +27,12 @@ class User_model extends CI_Model
   {
     $params['username'] = $post['username'];
     $params['password'] = md5($post['password1']);
-    $params['email'] = $post['email'];
-    $params['divisi'] = $post['divisi'];
-    $params['level'] = $post['level'];
-    $params['image'] = 'default.png';
+    $params['email']    = $post['email'];
+    $params['divisi']   = $post['divisi'];
+    $params['lokasi']   = $post['lokasi'];
+    $params['level']    = $post['level'];
+    $params['image']    = 'default.png';
+    $params['actived']  = 0;
     $this->db->insert('user', $params);
   }
 
@@ -38,9 +40,12 @@ class User_model extends CI_Model
   {
     $params['username'] = $post['username'];
     $params['password'] = md5($post['password1']);
-    $params['email'] = $post['email'];
-    $params['divisi'] = $post['divisi'];
-    $params['image'] = 'default.png';
+    $params['email']    = $post['email'];
+    $params['divisi']   = $post['divisi'];
+    $params['lokasi']   = $post['lokasi'];
+    $params['level']    = 4;
+    $params['image']    = 'default.png';
+    $params['actived']  = 0;
     $this->db->insert('user', $params);
   }
 
@@ -50,9 +55,10 @@ class User_model extends CI_Model
     if (!empty($post['password1'])) {
       $params['password'] = md5($post['password1']);
     }
-    $params['email'] = $post['email'];
+    $params['email']  = $post['email'];
     $params['divisi'] = $post['divisi'];
-    $params['level'] = $post['level'];
+    $params['lokasi'] = $post['lokasi'];
+    $params['level']  = $post['level'];
     $this->db->where('id_user', $post['id_user']);
     $this->db->update('user', $params);
   }

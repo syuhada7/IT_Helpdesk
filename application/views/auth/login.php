@@ -16,9 +16,6 @@
           <div class="text-center">
             <button type="submit" name="btnlogin" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Sign In</button> |
             <a href="<?= base_url("auth/regis"); ?>" class=" btn btn-success"><i class="fa fa-user-plus"></i> Register</a>
-            <br>
-            <br>
-            <a href="<?= base_url("auth/forgot"); ?>" class="btn btn-default"><i class="fa fa-key"></i> Forgot password</a>
           </div>
         </div>
       </form>

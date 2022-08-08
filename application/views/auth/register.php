@@ -22,8 +22,18 @@
         <div class="form-group has-feedback">
           <select name="divisi" class="form-control" required>
             <option>Department</option>
+            <option></option>
             <?php foreach ($depart as $dep) : ?>
               <option value="<?= $dep->nama_depart ?>"><?= $dep->nama_depart ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="form-group has-feedback">
+          <select name="lokasi" class="form-control" required>
+            <option>Locations</option>
+            <option></option>
+            <?php foreach ($lokasi as $lok) : ?>
+              <option value="<?= $lok->lokasi ?>"><?= $lok->lokasi ?></option>
             <?php endforeach; ?>
           </select>
         </div>
