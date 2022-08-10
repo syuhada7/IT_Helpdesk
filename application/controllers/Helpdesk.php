@@ -27,7 +27,7 @@ class Helpdesk extends CI_Controller
   {
     $name = $this->fungsi->user_login()->username;
     $data['row'] = $this->Helpdesk_model->getDash($name)->result();
-    $this->template->load('templates/template', 'users/index', $data);
+    $this->template->load('templates/template', 'users/list', $data);
   }
 
   public function add()
