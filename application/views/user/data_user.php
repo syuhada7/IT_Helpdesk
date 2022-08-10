@@ -83,18 +83,34 @@
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-lg-6 <?= form_error('divisi') ? 'has-error' : null ?>">
+            <div class="col-lg-4 <?= form_error('divisi') ? 'has-error' : null ?>">
               <label>Divisi *</label>
-              <input type="text" name="divisi" value="<?= set_value('divisi'); ?>" class="form-control">
+              <select name="divisi" class="form-control" required>
+                <option>Department</option>
+                <?php foreach ($depart as $dep) : ?>
+                  <option value="<?= $dep->nama_depart ?>"><?= $dep->nama_depart ?></option>
+                <?php endforeach; ?>
+              </select>
               <?= form_error('divisi', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
-            <div class="col-lg-6 <?= form_error('level') ? 'has-error' : null ?>">
+            <div class="col-lg-4 <?= form_error('lokasi') ? 'has-error' : null ?>">
+              <label>Locations *</label>
+              <select name="lokasi" class="form-control" required>
+                <option>Locations</option>
+                <?php foreach ($lokasi as $lok) : ?>
+                  <option value="<?= $lok->lokasi ?>"><?= $lok->lokasi ?></option>
+                <?php endforeach; ?>
+              </select>
+              <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>
+            </div>
+            <div class="col-lg-4 <?= form_error('level') ? 'has-error' : null ?>">
               <label>Level *</label>
               <select name="level" class="form-control">
                 <option>--</option>
                 <option value="1">Administrator</option>
                 <option value="2">Admin</option>
                 <option value="3">Pimpinan</option>
+                <option value="3">Users</option>
               </select>
               <?= form_error('level', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>

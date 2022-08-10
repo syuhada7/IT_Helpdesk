@@ -229,6 +229,30 @@
 
               <!-- Users -->
               <?php if ($this->session->userdata('level') == 4) { ?>
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                  <div class="pull-left image">
+                    <img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" alt="User Image">
+                  </div>
+                  <div class="pull-left info">
+                    <a href="<?= base_url('dashboard/team'); ?>">
+                      <span>
+                        <h5><i class="fa fa-circle text-success"></i> <?= $this->fungsi->user_login()->username; ?></h5>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                  <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+                <!-- /.search form -->
                 <ul class="sidebar-menu" data-widget="tree">
                   <li class="header">MAIN NAVIGATION</li>
                   <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
@@ -239,11 +263,6 @@
                   <li <?= $this->uri->segment(1) == 'Helpdesk' ? 'class="active"' : '' ?>>
                     <a href="<?= base_url('Helpdesk/users') ?>">
                       <i class="fa fa-child"></i> <span>Helpdesk</span>
-                    </a>
-                  </li>
-                  <li <?= $this->uri->segment(1) == 'Report' ? 'class="active"' : '' ?>>
-                    <a href="<?= base_url('report') ?>">
-                      <i class="fa fa-book"></i> <span>Report</span>
                     </a>
                   </li>
                 <?php } ?>

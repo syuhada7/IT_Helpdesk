@@ -39,4 +39,22 @@ class Fungsi
     $this->ci->load->model('Helpdesk_model');
     return $this->ci->Helpdesk_model->getOpen()->num_rows();
   }
+
+  public function count_done_users()
+  {
+    $this->ci->load->model('Helpdesk_model');
+    return $this->ci->Helpdesk_model->getDone_users()->num_rows();
+  }
+
+  public function count_progress_users()
+  {
+    $this->ci->load->model('Helpdesk_model');
+    return $this->ci->Helpdesk_model->getProgress_users()->num_rows();
+  }
+
+  public function count_open_users()
+  {
+    $this->ci->load->model('Helpdesk_model');
+    return $this->ci->Helpdesk_model->getOpen_users()->num_rows();
+  }
 }

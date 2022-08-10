@@ -14,6 +14,8 @@ class User extends CI_Controller
 
   public function index()
   {
+    $data['depart'] = $this->db->get('departemen')->result();
+    $data['lokasi'] = $this->db->get('lokasi')->result();
     $data['row'] = $this->User_model->get();
     $this->template->load('templates/template', 'User/data_user', $data);
   }
@@ -25,6 +27,7 @@ class User extends CI_Controller
     $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', ['matches' => 'password dont match!!', 'min_length' => 'Password too short!']);
     $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
     $this->form_validation->set_rules('divisi', 'Divisi', 'trim|required');
+    $this->form_validation->set_rules('lokasi', 'Locations', 'trim|required');
     $this->form_validation->set_rules('level', 'Level', 'trim|required');
 
     if ($this->form_validation->run() == false) {

@@ -23,6 +23,13 @@ class Helpdesk extends CI_Controller
     $this->template->load('templates/template', 'team/index', $data);
   }
 
+  public function users()
+  {
+    $name = $this->fungsi->user_login()->username;
+    $data['row'] = $this->Helpdesk_model->getDash($name)->result();
+    $this->template->load('templates/template', 'users/index', $data);
+  }
+
   public function add()
   {
     $helpdesk = new stdClass();
@@ -132,6 +139,12 @@ class Helpdesk extends CI_Controller
   {
     $data['detail'] = $this->Helpdesk_model->getView($id);
     $this->template->load('templates/template', 'team/view', $data);
+  }
+
+  public function view_users($id)
+  {
+    $data['detail'] = $this->Helpdesk_model->getView($id);
+    $this->template->load('templates/template', 'users/view', $data);
   }
 
   public function delete($id)

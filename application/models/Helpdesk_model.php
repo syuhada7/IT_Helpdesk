@@ -24,6 +24,15 @@ class Helpdesk_model extends CI_Model
     return $query;
   }
 
+  public function getDash($name)
+  {
+    $this->db->from('helpdesk');
+    $this->db->order_by('id_help', 'DESC');
+    $this->db->where('nama_user', $name);
+    $query = $this->db->get();
+    return $query;
+  }
+
   public function getDone()
   {
     $this->db->from('helpdesk');
@@ -46,6 +55,40 @@ class Helpdesk_model extends CI_Model
   {
     $this->db->from('helpdesk');
     $this->db->order_by('no_tiket', 'desc');
+    $this->db->where('status', 'OPEN');
+    $query = $this->db->get();
+    return $query;
+  }
+
+  //untuk users
+  public function getDone_users()
+  {
+    $users = $this->fungsi->user_login()->username;
+    $this->db->from('helpdesk');
+    $this->db->order_by('id_help', 'desc');
+    $this->db->where('nama_user', $users);
+    $this->db->where('status', 'Close');
+    $query = $this->db->get();
+    return $query;
+  }
+
+  public function getProgress_users()
+  {
+    $users = $this->fungsi->user_login()->username;
+    $this->db->from('helpdesk');
+    $this->db->order_by('id_help', 'desc');
+    $this->db->where('nama_user', $users);
+    $this->db->where('status', 'IN PROGRESS');
+    $query = $this->db->get();
+    return $query;
+  }
+
+  public function getOpen_users()
+  {
+    $users = $this->fungsi->user_login()->username;
+    $this->db->from('helpdesk');
+    $this->db->order_by('no_tiket', 'desc');
+    $this->db->where('nama_user', $users);
     $this->db->where('status', 'OPEN');
     $query = $this->db->get();
     return $query;

@@ -23,6 +23,16 @@ class User_model extends CI_Model
     return $query;
   }
 
+  public function getName($users = null)
+  {
+    $this->db->from('user');
+    if ($users != null) {
+      $this->db->where('nama_user', $users);
+    }
+    $query = $this->db->get();
+    return $query;
+  }
+
   public function add($post)
   {
     $params['username'] = $post['username'];
@@ -32,7 +42,7 @@ class User_model extends CI_Model
     $params['lokasi']   = $post['lokasi'];
     $params['level']    = $post['level'];
     $params['image']    = 'default.png';
-    $params['actived']  = 0;
+    $params['actived']  = 1;
     $this->db->insert('user', $params);
   }
 
