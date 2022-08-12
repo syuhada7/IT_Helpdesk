@@ -63,11 +63,20 @@
             <th>What do ?</th>
             <th>Status</th>
             <th>Date Closed</th>
+            <th>lost time</th>
           </tr>
         </thead>
         <tbody>
           <?php $no = 1;
-          foreach ($datafilter as $key) : ?>
+          foreach ($datafilter as $key) :
+            $awal  = strtotime($key->created);
+            $akhir = strtotime($key->updated);
+            $diff  = $akhir - $awal;
+
+            $jam   = floor($diff / (60 * 60));
+            $menit = $diff - ($jam * (60 * 60));
+            $detik = $diff % 60;
+          ?>
             <tr class="text-center">
               <td><?= $no++; ?></td>
               <td><?= $key->no_tiket ?></td>
@@ -81,6 +90,7 @@
               <td><?= $key->deskrip2 ?></td>
               <td><?= $key->status ?></td>
               <td><?= $key->updated ?></td>
+              <td><?= $jam .  ' jam, ' . floor($menit / 60) . ' menit, ' . $detik . ' detik'; ?></td>
             <?php endforeach; ?>
             </tr>
         </tbody>

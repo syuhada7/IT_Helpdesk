@@ -166,6 +166,28 @@ class Helpdesk_model extends CI_Model
     $this->db->update('helpdesk', $params);
   }
 
+  public function aproved($post)
+  {
+    $params = [
+      'no_tiket'    => $post['no_tiket'],
+      'nama_user'   => $post['nama_user'],
+      'lokasi'      => $post['lokasi'],
+      'depart'      => $post['depart'],
+      'jenis'       => $post['request'],
+      'deskrip1'    => $post['deskrip1'],
+      'deskrip2'    => $post['deskrip2'],
+      'deskrip3'    => $post['deskrip3'],
+      'status'      => 'Close',
+      'username'    => $post['username'],
+      'created'     => $post['created'],
+      'updated'     => $post['updated'],
+      'closed'      => $post['closed'],
+      'aproved'     => 'Done'
+    ];
+    $this->db->where('id_help', $post['id_help']);
+    $this->db->update('helpdesk', $params);
+  }
+
   public function delete($where)
   {
     $this->db->where($where);
