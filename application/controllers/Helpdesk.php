@@ -104,7 +104,7 @@ class Helpdesk extends CI_Controller
       if ($this->db->affected_rows() > 0) {
         $this->session->set_flashdata('success', 'Data Success Save');
       }
-      redirect('Helpdesk');
+      redirect('Helpdesk/users');
     } else if (isset($_POST['update'])) {
       $this->Helpdesk_model->edit($post);
       //kirim status ke telegram
@@ -168,7 +168,7 @@ class Helpdesk extends CI_Controller
     $desc = $post['deskrip1'];
     $status = "OPEN";
 
-    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT Helpdesk, berikut rincian trouble ticket dari user :" . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Status : " . $status . PHP_EOL . "Mohon segera di follow up yah.";
+    $msg =  "[" . date_default_timezone_set('Asia/Jakarta') . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT Helpdesk, berikut rincian trouble ticket dari user :" . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Status : " . $status . PHP_EOL . "Mohon segera di follow up yah.";
 
     try {
       $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
@@ -199,7 +199,7 @@ class Helpdesk extends CI_Controller
     $teknisi = $post['username'];
     $status = "IN PROGRESS";
 
-    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Status : " . $status . PHP_EOL . "Terimakasih.";
+    $msg =  "[" . date_default_timezone_set('Asia/Jakarta') . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Status : " . $status . PHP_EOL . "Terimakasih.";
 
     try {
       $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
@@ -232,7 +232,7 @@ class Helpdesk extends CI_Controller
     $teknisi = $post['username'];
     $status = "PENDING";
 
-    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System akan menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu1 . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Waktu Pengerjaan : " . $waktu2 . PHP_EOL . "Status : " . $status . PHP_EOL . "Terpending Di Karenakan : " . $desc2 . PHP_EOL . "Terimakasih.";
+    $msg =  "[" . date_default_timezone_set('Asia/Jakarta') . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System akan menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu1 . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Waktu Pengerjaan : " . $waktu2 . PHP_EOL . "Status : " . $status . PHP_EOL . "Terpending Di Karenakan : " . $desc2 . PHP_EOL . "Terimakasih.";
 
     try {
       $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";
@@ -267,7 +267,7 @@ class Helpdesk extends CI_Controller
     $teknisi = $post['username'];
     $status = "Close";
 
-    $msg =  "[" . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System ingin Menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu1 . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Waktu Pengerjaan : " . $waktu2 . PHP_EOL . "Terpending Di Karenakan : " . $desc2 . PHP_EOL . "Pada tanggal : " . $waktu3 . PHP_EOL . "Status : " . $status . PHP_EOL . "Dengan rincian yang dikerjakan : " . $desc3 . PHP_EOL . "Terimakasih.";
+    $msg =  "[" . date_default_timezone_set('Asia/Jakarta') . date('D, j M Y H:i:s') . "] " . PHP_EOL . "Hallo Tim IT, System ingin Menginformasikan terkait laporan user : " . PHP_EOL . "No. Tiket : " . $no_tiket . PHP_EOL . "User : " . $pelapor . PHP_EOL . "Departement : " . $divisi . PHP_EOL . "Lokasi : " . $lokasi . PHP_EOL . "Type :" . $jenis . PHP_EOL . "Waktu Lapor : " . $waktu1 . PHP_EOL . "Deskripsi : " . $desc . PHP_EOL . "Teknisi : " . $teknisi . PHP_EOL . "Waktu Pengerjaan : " . $waktu2 . PHP_EOL . "Terpending Di Karenakan : " . $desc2 . PHP_EOL . "Pada tanggal : " . $waktu3 . PHP_EOL . "Status : " . $status . PHP_EOL . "Dengan rincian yang dikerjakan : " . $desc3 . PHP_EOL . "Terimakasih.";
 
     try {
       $url = "https://api.telegram.org/bot" . $key_bot . "/sendMessage?chat_id=-537375994";

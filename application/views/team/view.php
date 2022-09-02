@@ -49,7 +49,7 @@
         </tr>
         <tr>
           <th>What do ?</th>
-          <td><?= $data->deskrip2 ?></td>
+          <td><?= $data->deskrip3 ?></td>
         </tr>
         <tr>
           <th>Status</th>
@@ -68,8 +68,16 @@
           <td><?= $data->opened ?></td>
         </tr>
         <tr>
+          <th>Deskcription Pending</th>
+          <td><?= $data->deskrip2 ?></td>
+        </tr>
+        <tr>
           <th>Close Date</th>
           <td><?= $data->closed ?></td>
+        </tr>
+        <tr>
+          <th>Aproved by user</th>
+          <td><?= $data->aproved ?></td>
         </tr>
     </table>
   <?php endforeach; ?>

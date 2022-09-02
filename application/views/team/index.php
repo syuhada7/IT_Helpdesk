@@ -47,7 +47,7 @@
                     <input type="hidden" name="deskrip1" value="<?= $data->deskrip1 ?>">
                     <input type="hidden" name="status" value="<?= $data->status ?>">
                     <input type="hidden" name="created" value="<?= $data->created ?>">
-                    <input type="hidden" name="updated" class="form-control" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('Y-m-d H:i:s') ?>">
+                    <input type="hidden" name="updated" <?= date_default_timezone_set("Asia/Jakarta"); ?> value="<?= date('Y-m-d H:i:s'); ?>">
                     <input type="hidden" name="username" value="<?= $this->fungsi->user_login()->username; ?>" class="form-control">
                   </div>
                   <div class="form-group">

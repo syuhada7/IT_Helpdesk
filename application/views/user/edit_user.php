@@ -56,6 +56,7 @@
                   <option value="1">Administrator</option>
                   <option value="2" <?= $level == 2 ? "selected" : null ?>>Admin</option>
                   <option value="3" <?= $level == 3 ? "selected" : null ?>>Pimpinan</option>
+                  <option value="4" <?= $level == 4 ? "selected" : null ?>>Users</option>
                 </select>
               </div>
             </div>

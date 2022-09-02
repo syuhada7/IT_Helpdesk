@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-lg">
           <form action="<?= base_url('helpdesk/process') ?>" method="POST">
-            <div class="form-group row">
+            <div class="form-group">
               <div class="col-lg-4">
                 <label>No Ticket</label>
                 <input type="hidden" name="id_help" value="<?= $row->id_help ?>" class="form-control">
@@ -37,7 +37,7 @@
                 <input type="text" name="depart" value="<?= $this->fungsi->user_login()->divisi; ?>" class="form-control" readonly>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group">
               <div class="col-lg-4">
                 <label>Locations *</label>
                 <input type="text" name="lokasi" value="<?= $this->fungsi->user_login()->lokasi; ?>" class="form-control" readonly>
@@ -56,8 +56,10 @@
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button> |
-              <button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Reset</button>
+              <div class="col-lg-4">
+                <button type="submit" class="btn btn-success" name="<?= $page ?>"><i class="fa fa-paper-plane"></i> Save</button> |
+                <button type="reset" class="btn btn-default"><i class="fa fa-undo"></i> Reset</button>
+              </div>
             </div>
           </form>
         </div>

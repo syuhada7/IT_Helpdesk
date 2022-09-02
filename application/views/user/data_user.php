@@ -110,7 +110,7 @@
                 <option value="1">Administrator</option>
                 <option value="2">Admin</option>
                 <option value="3">Pimpinan</option>
-                <option value="3">Users</option>
+                <option value="4">Users</option>
               </select>
               <?= form_error('level', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
