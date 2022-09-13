@@ -14,7 +14,7 @@
       <i class="fa fa-list"></i>
       <h3 class="box-title">List Data</h3>
       <div class="pull-right">
-        <a href="<?= base_url('helpdesk/add'); ?>" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Create</a>
+        <a href="<?= base_url('helpdesk/add_users'); ?>" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Create</a>
       </div>
     </div>
     <div class="box-body table-responsive">

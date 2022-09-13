@@ -235,7 +235,7 @@
                     <img src="<?= base_url() ?>assets/dist/img/pbn.png" class="img-circle" alt="User Image">
                   </div>
                   <div class="pull-left info">
-                    <a href="<?= base_url('dashboard/team'); ?>">
+                    <a href="<?= base_url('dashboard/users'); ?>">
                       <span>
                         <h5><i class="fa fa-circle text-success"></i> <?= $this->fungsi->user_login()->username; ?></h5>
                       </span>

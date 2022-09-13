@@ -24,8 +24,6 @@
               <b>Email</b> <a class="pull-right"><?= $this->fungsi->user_login()->email; ?></a>
             </li>
           </ul>
-
-          <a href="#" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
         </div>
         <!-- /.box-body -->
       </div>
@@ -36,7 +34,8 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-          <li><a href="#settings" data-toggle="tab">Settings</a></li>
+          <li><a href="#profile" data-toggle="tab">Profile</a></li>
+          <li><a href="#settings" data-toggle="tab">Change Password</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="activity">
@@ -75,11 +74,47 @@
           </div>
           <!-- /.tab-pane -->
 
+          <div class="tab-pane" id="profile">
+            <table class="table table-bordered table-striped">
+              <tr>
+                <th>Name</th>
+                <td><?= $this->fungsi->user_login()->username; ?></td>
+              </tr>
+              <tr>
+                <th>Department</th>
+                <td><?= $this->fungsi->user_login()->divisi; ?></td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td><?= $this->fungsi->user_login()->email; ?></td>
+              </tr>
+              <tr>
+                <th>Locations</th>
+                <td><?= $this->fungsi->user_login()->lokasi; ?></td>
+              </tr>
+              <tr>
+                <th>Date Created</th>
+                <td><?= $this->fungsi->user_login()->date_created; ?></td>
+              </tr>
+              <tr>
+                <th>Status User</th>
+                <td>
+                  <?php
+                  $check = $this->fungsi->user_login()->actived;
+                    if ($check == 1) {
+                    echo "Active";
+                    }
+                  ?>
+                </td>
+              </tr>
+            </table>
+          </div>
+
           <div class="tab-pane" id="settings">
-            <form class="form-horizontal" action="<?= base_url('Auth/forgot') ?>" method="post">
+            <form class="form-horizontal" action="<?= base_url('Users/forgot') ?>" method="post">
               <div class="form-group has-feedback">
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="username" placeholder="Username" required>
+                  <input type="text" class="form-control" name="username" value="<?= $this->fungsi->user_login()->username; ?>" readonly>
                   <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="col-md-6">
@@ -88,12 +123,14 @@
                 </div>
               </div>
               <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password1" placeholder="New Password" required>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-              </div>
-              <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password2" placeholder="Re-password" required>
-                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                <div class="col-md-6">
+                  <input type="password" class="form-control" name="password1" placeholder="New Password" required>
+                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="col-md-6">
+                  <input type="password" class="form-control" name="password2" placeholder="Re-password" required>
+                  <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                </div>
               </div>
               <div class="row">
                 <div class="col-xs-7">

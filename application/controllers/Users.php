@@ -24,4 +24,23 @@ class Users extends CI_Controller
     $data['row'] = $this->Helpdesk_model->getDash($name)->result();
     $this->template->load('templates/template', 'users/list', $data);
   }
+
+  function forgot()
+  {
+    $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]');
+    $this->form_validation->set_rules('password2', 'Repeat Password', 'trim|required|min_length[6]|matches[password1]');
+
+    if ($this->form_validation->run() == false) {
+      $this->load->view('templates/auth_header');
+      $this->load->view('auth/forgot');
+      $this->load->view('templates/auth_footer');
+    } else {
+      $post = $this->input->post(null, TRUE);
+      $this->User_model->forgot($post);
+      if ($this->db->affected_rows() > 0) {
+        echo "<script>alert('Password Changed')</script>";
+      }
+      echo "<script>window.location='" . site_url('Users') . "'</script>";
+    }
+  }
 }

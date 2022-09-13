@@ -48,6 +48,24 @@ class Helpdesk extends CI_Controller
     $this->template->load('templates/template', 'helpdesk/form', $data);
   }
 
+  public function add_users()
+  {
+    $helpdesk = new stdClass();
+    $helpdesk->id_help = null;
+    $helpdesk->nama_user = null;
+    $helpdesk->lokasi = null;
+    $helpdesk->depart = null;
+    $helpdesk->jenis = null;
+    $helpdesk->deskrip1 = null;
+
+    $data = array(
+      'page'  => 'add',
+      'row'   => $helpdesk
+    );
+    $data['tiket'] = $this->Helpdesk_model->tiket();
+    $this->template->load('templates/template', 'users/add', $data);
+  }
+
   public function edit($id)
   {
     $query = $this->Helpdesk_model->get($id);
