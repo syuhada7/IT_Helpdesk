@@ -17,7 +17,17 @@
       </div>
     </div>
     <table class="table table-bordered">
-      <?php foreach ($detail->result() as $key => $data) : ?>
+      <?php
+      foreach ($detail->result() as $key => $data) :
+
+        $awal  = strtotime($data->created);
+        $akhir = strtotime($data->updated);
+        $diff  = $akhir - $awal;
+
+        $jam   = floor($diff / (60 * 60));
+        $menit = $diff - ($jam * (60 * 60));
+        $detik = $diff % 60;
+      ?>
         <img src="<?= base_url('uploads/logo/logo.png') ?>" style="width:150px">
         <tr>
           <th>No Ticket</th>
@@ -36,6 +46,10 @@
           <td><?= $data->lokasi ?></td>
         </tr>
         <tr>
+          <th>Type</th>
+          <td><?= $data->jenis ?></td>
+        </tr>
+        <tr>
           <th>Descriptions</th>
           <td><?= $data->deskrip1 ?></td>
         </tr>
@@ -45,19 +59,39 @@
         </tr>
         <tr>
           <th>What do ?</th>
-          <td><?= $data->deskrip2 ?></td>
+          <td><?= $data->deskrip3 ?></td>
         </tr>
         <tr>
           <th>Status</th>
           <td><?= $data->status ?></td>
         </tr>
         <tr>
-          <th>Close Date</th>
+          <th>Update Date</th>
           <td><?= $data->updated ?></td>
         </tr>
         <tr>
           <th>Solved by</th>
           <td><?= $data->username ?></td>
+        </tr>
+        <tr>
+          <th>Pending Date</th>
+          <td><?= $data->opened ?></td>
+        </tr>
+        <tr>
+          <th>Deskcription Pending</th>
+          <td><?= $data->deskrip2 ?></td>
+        </tr>
+        <tr>
+          <th>Close Date</th>
+          <td><?= $data->closed ?></td>
+        </tr>
+        <tr>
+          <th>Aproved by user</th>
+          <td><?= $data->aproved ?></td>
+        </tr>
+        <tr>
+          <th>Working Time</th>
+          <td><?= $jam .  ' jam, ' . floor($menit / 60) . ' menit, ' . $detik . ' detik'; ?></td>
         </tr>
         <tr>
           <td onclick="javascript: return confirm('Are you sure delete this <?= $data->no_tiket ?>')">

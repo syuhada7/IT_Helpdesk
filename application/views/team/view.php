@@ -17,7 +17,17 @@
       </div>
     </div>
     <table class="table table-bordered">
-      <?php foreach ($detail->result() as $key => $data) : ?>
+      <?php
+      foreach ($detail->result() as $key => $data) :
+
+        $awal  = strtotime($data->created);
+        $akhir = strtotime($data->updated);
+        $diff  = $akhir - $awal;
+
+        $jam   = floor($diff / (60 * 60));
+        $menit = $diff - ($jam * (60 * 60));
+        $detik = $diff % 60;
+      ?>
         <img src="<?= base_url('uploads/logo/logo.png') ?>" style="width:150px">
         <tr>
           <th>No Ticket</th>
@@ -78,6 +88,10 @@
         <tr>
           <th>Aproved by user</th>
           <td><?= $data->aproved ?></td>
+        </tr>
+        <tr>
+          <th>Working Time</th>
+          <td><?= $jam .  ' jam, ' . floor($menit / 60) . ' menit, ' . $detik . ' detik'; ?></td>
         </tr>
     </table>
   <?php endforeach; ?>
